@@ -18,5 +18,10 @@ customer_df = customer_df.drop(['Booking_ID', 'stays_in_weekend_nights', 'stays_
                                 'avg_price_per_room','booking_status'], axis=1)
 
 final_df = pd.concat([hotel_df, customer_df], ignore_index=True)
+final_df['year_month'] = final_df["arrival_year"].astype(str) + '_' + final_df["arrival_month"].astype(str)
+
+final_df = final_df.drop(['arrival_year','arrival_month'], axis=1)
+
 print((final_df))
+
 final_df.to_csv('preprocessed.csv', index=False)
